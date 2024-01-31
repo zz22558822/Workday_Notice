@@ -88,6 +88,8 @@ def send_mail(content, html_template):
 
     try:
         with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.starttls()
+            server.login(gmail_username, gmail_password)
             server.sendmail(sender_email, recipient_email, message.as_string())
         print('')
         print(f"{today_date} - 完成: 郵件傳送成功.")
